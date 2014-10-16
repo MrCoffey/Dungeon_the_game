@@ -5,7 +5,9 @@ class Dungeon
 		@player = Player.new(player_name)
 		@rooms = []
 	end
+=begin
 
+Those classes aren'n necessary due the Struct
 	class Player
 		attr_accessor :name, :location
 
@@ -24,5 +26,7 @@ class Dungeon
 			@connections = connections
 		end
 	end	
+=end
+	Player = Stru
 end
 
