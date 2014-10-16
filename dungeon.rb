@@ -1,11 +1,3 @@
-class Dungeon
-	attr_accessor :player
-
-	def initialize(player_name)
-		@player = Player.new(player_name)
-		@rooms = []
-	end
-
 =begin
 
 /*Those classes aren't necessary due the Struct is suppling 
@@ -20,6 +12,14 @@ class Dungeon
 	Room = Struct.new(:reference, :name, :description, :connections)
 =end
 
+class Dungeon
+	attr_accessor :player
+
+	def initialize(player_name)
+		@player = Player.new(player_name)
+		@rooms = []
+	end
+
 	#This add a new Room  to @rooms array
 	def add_room(reference, name, description, connections)
 		@rooms << Room.new(reference, name, description, connections)
@@ -29,14 +29,14 @@ class Dungeon
 	def start(location)
 		@player.location = location
 		show_current_description
-	end	
+	end
 
 	def show_current_description
-		puts find_room_in_dungeon(@player.location).full_description		
+		puts find_room_in_dungeon(@player.location).full_description
 	end
 
 	def find_room_in_dungeon(reference)
-		@rooms.detect { |room| room.reference == reference}
+		@rooms.detect { |room| room.reference == reference }
 	end
 
 	def find_room_in_direction(direction)
@@ -52,8 +52,8 @@ class Dungeon
 	class Player
 		attr_accessor :name, :location
 
-		def initialize(player_name)
-			@name = player_name			
+		def initialize(name)
+			@name = name
 		end
 	end
 
@@ -70,18 +70,19 @@ class Dungeon
 		def full_description
 			@name + "\n\nYou are in " + @description
 		end
-
 	end
+end
+
 
 	# Create the main dungeon object
 	my_dungeon = Dungeon.new("Fred Bloggs")
-
-	#Adding new rooms
-	my_dungeon.add_room(:largecave, "Large Cave", "a large cavernous cave", {:west => :smallcave})
-	my_dungeon.add_room(:smallcave, "Small Cave", "a small, claustrophobic cav", {:east => :largecave})
+	# Add rooms to the dungeon
+	my_dungeon.add_room(:largecave, "Large Cave", "a large cavernous cave", { :west => :smallcave })
+	my_dungeon.add_room(:smallcave, "Small Cave", "a small, claustrophobic cave", { :east => :largecave })
 
 	# Start the dungeon by placing the player in the large cave
 	my_dungeon.start(:largecave)
 
-end
+
+
 
