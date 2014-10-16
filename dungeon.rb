@@ -68,15 +68,20 @@ class Dungeon
 		end
 
 		def full_description
-			@name + "\n\nYou are in" + @description
+			@name + "\n\nYou are in " + @description
 		end
 
 	end
 
+	# Create the main dungeon object
+	my_dungeon = Dungeon.new("Fred Bloggs")
 
 	#Adding new rooms
 	my_dungeon.add_room(:largecave, "Large Cave", "a large cavernous cave", {:west => :smallcave})
 	my_dungeon.add_room(:smallcave, "Small Cave", "a small, claustrophobic cav", {:east => :largecave})
+
+	# Start the dungeon by placing the player in the large cave
+	my_dungeon.start(:largecave)
 
 end
 
