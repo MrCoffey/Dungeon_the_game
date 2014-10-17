@@ -134,16 +134,13 @@ class Dungeon
 		end
 	end
 end
-
+#Dialog when game just start
 gretting = Dungeon::Gretting.new
 gretting.game_init
 
-
-
-
+#Player Chose their class
 new_player = Dungeon::Player.new("#{@name}")
 puts new_player.type_player
-
 
 # Create the main dungeon object
 my_dungeon = Dungeon.new("#{@name}")
