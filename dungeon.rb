@@ -4,17 +4,38 @@
 	Player = Struct.new(:name, :location)
 	Room = Struct.new(:reference, :name, :description, :connections)
 =end
-gretting = puts "Wellcome strainger do you have any name ?: "
+
+gretting = puts "Elf: Wellcome strainger do you have any name ?\n"
 puts "Yes my name is .. :"
 @name = gets.chomp!.capitalize
 
 while @name.length <= 0
-	puts "What is your name strainger:"
+	puts "Elf: What is your name strainger:"
 	@name = gets.chomp!.capitalize
 end
 
-puts "So your name is #{@name} ? hu \n"
 
+puts "\nElf: So your name is #{@name} uuhh!, dude! do have any idea of where on earth are you?, this isn't a place for racional people, best if you run away...\n "
+
+early_choise = false
+while early_choise == false
+	puts "What you wanna do ?\n"
+
+	puts "1. Leave"
+	puts "2. Keep on"
+
+	option = gets.chomp.to_i
+
+	if option == 1
+		puts "You: OMG! i didn't notice, see ya! faggot"
+		puts "Game Over"
+		early_choise = true
+		exit
+	elsif option == 2
+		puts "You: Shut up, and get out of my way!"
+		early_choise = true
+	end
+end
 
 
 
@@ -79,16 +100,16 @@ class Dungeon
 	end
 end
 
-=begin
+
 	# Create the main dungeon object
-	my_dungeon = Dungeon.new("Fred Bloggs")
-	# Add rooms to the dungeon
+	my_dungeon = Dungeon.new("#{@name}")
+		# Add rooms to the dungeon
 	my_dungeon.add_room(:largecave, "Large Cave", "a large cavernous cave", { :west => :smallcave })
 	my_dungeon.add_room(:smallcave, "Small Cave", "a small, claustrophobic cave", { :east => :largecave })
 
 	# Start the dungeon by placing the player in the large cave
 	my_dungeon.start(:largecave)
-=end
+
 
 
 
