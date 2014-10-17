@@ -1,16 +1,22 @@
 =begin
-
-/*Those classes aren't necessary due the Struct is suppling 
-/*their functions. 
-/*
-/*If you ever need to add methods to Player or Room, you can uncomment them
-/*and add the attributes back with attr_accessor.
-/*
 /*Struct were changed for entire class due they change their objects
 
 	Player = Struct.new(:name, :location)
 	Room = Struct.new(:reference, :name, :description, :connections)
 =end
+gretting = puts "Wellcome strainger do you have any name ?: "
+puts "Yes my name is .. :"
+@name = gets.chomp!.capitalize
+
+while @name.length <= 0
+	puts "What is your name strainger:"
+	@name = gets.chomp!.capitalize
+end
+
+puts "So your name is #{@name} ? hu \n"
+
+
+
 
 class Dungeon
 	attr_accessor :player
@@ -73,7 +79,7 @@ class Dungeon
 	end
 end
 
-
+=begin
 	# Create the main dungeon object
 	my_dungeon = Dungeon.new("Fred Bloggs")
 	# Add rooms to the dungeon
@@ -82,7 +88,7 @@ end
 
 	# Start the dungeon by placing the player in the large cave
 	my_dungeon.start(:largecave)
-
+=end
 
 
 
