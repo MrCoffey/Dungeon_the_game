@@ -138,7 +138,7 @@ end
 gretting = Dungeon::Gretting.new
 gretting.game_init
 
-#Player Chose their class
+#Player Chose their class *pls check dialog that clash
 new_player = Dungeon::Player.new("#{@name}")
 puts new_player.type_player
 
