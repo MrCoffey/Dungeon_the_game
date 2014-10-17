@@ -5,40 +5,6 @@
 	Room = Struct.new(:reference, :name, :description, :connections)
 =end
 
-gretting = puts "Elf: Wellcome strainger do you have any name ?\n"
-puts "Yes my name is .. :"
-@name = gets.chomp!.capitalize
-
-while @name.length <= 0
-	puts "Elf: What is your name strainger:"
-	@name = gets.chomp!.capitalize
-end
-
-
-puts "\nElf: So your name is #{@name} uuhh!, dude! do have any idea of where on earth are you?, this isn't a place for racional people, best if you run away...\n "
-
-early_choise = false
-while early_choise == false
-	puts "What you wanna do ?\n"
-
-	puts "1. Leave"
-	puts "2. Keep on"
-
-	option = gets.chomp.to_i
-
-	if option == 1
-		puts "You: OMG! i didn't notice, see ya! faggot"
-		puts "Game Over"
-		early_choise = true
-		exit
-	elsif option == 2
-		puts "You: Shut up, and get out of my way!"
-		early_choise = true
-	end
-end
-
-
-
 class Dungeon
 	attr_accessor :player
 
@@ -46,6 +12,7 @@ class Dungeon
 		@player = Player.new(player_name)
 		@rooms = []
 	end
+
 
 	#This add a new Room  to @rooms array
 	def add_room(reference, name, description, connections)
@@ -82,7 +49,37 @@ class Dungeon
 		def initialize(name)
 			@name = name
 		end
+
+		def type_player
+			player_class_choise = false
+
+			while player_class_choise == false
+				puts "#{@name}, you must chose a class !"
+
+				puts "1. Warrior"
+				puts "2. Wizzard"		
+				puts "3. Dwarf"
+
+				warrior_choise = gets.chomp.to_i
+
+				case warrior_choise
+					when 1
+						puts "You are a Human, class warrior"
+						player_class_choise = true
+					when 2
+						puts "You are an Elf, class wizzard"
+						player_class_choise = true
+					when 3
+						puts "You are a Dwarf, class support"
+						player_class_choise = true
+					else	
+						"unknown"						
+				end	
+			end
+		end
 	end
+
+
 
 	class Room
 		attr_accessor :reference, :name, :description, :connections
@@ -101,15 +98,50 @@ class Dungeon
 end
 
 
+gretting = puts "Elf: Wellcome strainger do you have any name ?\n"
+puts "Yes my name is .. :"
+@name = gets.chomp!.capitalize
+
+while @name.length <= 0
+	puts "Elf: What is your name strainger:\n"
+	@name = gets.chomp!.capitalize
+end
+
+
+puts "\nElf: So your name is #{@name} uuhh!, dude! do have any idea of where on earth are you?, this isn't a place for racional people, best if you run away...\n "
+
+early_choise = false
+while early_choise == false
+	puts "What you wanna do ?\n"
+
+	puts "1. Leave"
+	puts "2. Keep on"
+
+	option = gets.chomp.to_i
+
+	if option == 1
+		puts "You: OMG! i didn't notice, see ya! faggot"
+		puts "Game Over"
+		early_choise = true
+		exit
+	elsif option == 2
+		puts "You: Shut up, and get out of my way!"
+		early_choise = true
+	end
+end
+
+
+
+puts "Elf: Well done strainger!, it's time to chose your class\n"
+
+new_player = Dungeon::Player.new("#{@name}")
+puts new_player.type_player
+
+
 	# Create the main dungeon object
 	my_dungeon = Dungeon.new("#{@name}")
 		# Add rooms to the dungeon
 	my_dungeon.add_room(:largecave, "Large Cave", "a large cavernous cave", { :west => :smallcave })
 	my_dungeon.add_room(:smallcave, "Small Cave", "a small, claustrophobic cave", { :east => :largecave })
-
 	# Start the dungeon by placing the player in the large cave
 	my_dungeon.start(:largecave)
-
-
-
-
